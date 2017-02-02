@@ -9,12 +9,17 @@ public class LinkListStackExample {
     public static void main(String[] args){
         LinkListStack lls = new LinkListStack();
         lls.push(10,20,30,40,50);
+        System.out.println("Size: " + lls.getListCustom().getSize());
         lls.displayStack();
+        System.out.println();
 
         lls.pop();
+        System.out.println("Size: " + lls.getListCustom().getSize());
         lls.displayStack();
+        System.out.println();
 
         lls.pop();
+        System.out.println("Size: " + lls.getListCustom().getSize());
         lls.displayStack();
 
     }
@@ -62,6 +67,9 @@ public class LinkListStackExample {
         }
     }
 
+    /**
+     *  LinkList Class
+     */
     static class LinkListCustom{
         private Node first = null; // Reference to the top of the stack
         private Node last = null; // Reference to the bottom of the stack
@@ -125,6 +133,9 @@ public class LinkListStackExample {
 
     }
 
+    /**
+     *  LinkList Stack class
+     */
     static class LinkListStack{
 
         private LinkListCustom listCustom = new LinkListCustom();
@@ -149,7 +160,6 @@ public class LinkListStackExample {
         }
 
         void displayStack(){
-            System.out.println("");
             getListCustom().displayList();
         }
 
