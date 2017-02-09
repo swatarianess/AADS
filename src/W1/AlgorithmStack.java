@@ -1,69 +1,80 @@
 package W1;
 
+import java.util.Arrays;
+
 /**
  * Created by Stephen A. on 07/02/2017.
  */
 public class AlgorithmStack {
 
-    private StackArrayExample example;
-
     @SuppressWarnings("unchecked")
-    public AlgorithmStack(int sizeOfArray){
-        example = new StackArrayExample<Integer>(sizeOfArray);
+    public AlgorithmStack(){
     }
 
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
-        AlgorithmStack aStack = new AlgorithmStack(10);
-        aStack.example.push(10,20,30,40,50);
+        //Initialize AlgorithmStack
+        AlgorithmStack algorithmStack = new AlgorithmStack();
+        StackArrayImpl<Integer> integerStackArray = new StackArrayImpl<>(10);
+        StackArrayImpl<String> stringStackArray = new StackArrayImpl<>(10);
 
-        AlgorithmStack sStack = new AlgorithmStack(5);
-        sStack.example.push("hello","world","!");
-
-        System.out.println();
-
-        System.out.println("Top of int stack: " + aStack.showTopOfStack());
-        System.out.println("Top of string stack: " + sStack.showTopOfStack());
+        //Push elements to stack arrays
+        integerStackArray.push(10,20,30,40,50);
+        stringStackArray.push("hi","world","how","goes","it");
 
         System.out.println();
 
-        System.out.println("Integer stack contents: \n" + aStack);
-        System.out.println("Bottom of Integer stack: \n" + aStack.showBottomOfStack());
+        System.out.println("Top of int stack: " + algorithmStack.showTopOfStack(integerStackArray));
+        System.out.println("Top of string stack: " + algorithmStack.showTopOfStack(stringStackArray));
 
         System.out.println();
 
-        System.out.println("String stack contents: \n" + sStack);
-        System.out.println("Bottom of string stack: \n" + sStack.showBottomOfStack());
+        System.out.println("Integer stack [" + integerStackArray.size() + "] contents: \n" + integerStackArray);
+        System.out.println("Bottom of Integer stack: \n" + algorithmStack.showBottomOfStack(integerStackArray));
+
+        System.out.println();
+
+        System.out.println("String stack [" + stringStackArray.size() + "]  contents: \n" + stringStackArray);
+        System.out.println("Bottom of string stack: \n" + algorithmStack.showBottomOfStack(stringStackArray));
     }
 
-    public Object showTopOfStack() throws Exception {
-        StackArrayExample s = example;
-        Object top = s.pop();
-        s.push(top);
+    public Object showTopOfStack(StackArrayImpl stackArray) throws Exception {
+        Object top = stackArray.pop();
+        stackArray.push(top);
         return top;
     }
 
-    public Object removeTopOfStack() throws Exception {
-        StackArrayExample s = example;
+    public Object removeTopOfStack(StackArrayImpl s) throws Exception {
         return s.pop();
     }
 
-    public Object showBottomOfStack() throws Exception {
-        StackArrayExample s = example;
-        Object[] temp = new Object[s.getStackSize()];
+    public Object showBottomOfStack(StackArrayImpl stackArray) throws Exception {
+        Object[] temp = new Object[(stackArray.size() - stackArray.remainingSpace())];
 
-        for(int i=0;i<s.getStackSize()-1;i++){
-            temp[i] = s.pop();
+        for(int i = 0; i < stackArray.size(); i++){
+            Object item = stackArray.pop();
+            temp[i] = item;
         }
 
-        return temp[s.getStackSize()];
+        stackArray.push(temp);
+
+        System.out.println("Origin: " + stackArray);
+        System.out.println("Finale: " + Arrays.toString(temp));
+
+        return showTopOfStack(stackArray);
     }
 
-    /**
-     * @return Returns all elements in the stack
-     */
-    @Override
-    public String toString() {
-        return example.toString();
+
+    public Object getItem(StackArrayImpl s, int index) throws Exception {
+        Object[] temp = new Object[s.size()];
+
+        for (int i = 0; i < temp.length; i++) {
+            Object obj = s.pop();
+            temp[i] = obj;
+        }
+
+       return temp[index];
     }
+
+
 }

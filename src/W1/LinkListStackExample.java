@@ -146,6 +146,7 @@ public class LinkListStackExample {
             getListCustom().add(value);
         }
 
+        @SuppressWarnings("unchecked")
         void push(T... value){
             for (T aValue : value) {
                 getListCustom().add(aValue);
@@ -163,7 +164,6 @@ public class LinkListStackExample {
         void displayStack(){
             getListCustom().displayList();
         }
-
 
         LinkListCustom getListCustom() {
             return listCustom;
