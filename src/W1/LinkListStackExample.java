@@ -1,3 +1,4 @@
+package W1;
 
 /**
  *  Stack implementation on a custom Linklist
@@ -28,11 +29,11 @@ public class LinkListStackExample {
     /**
      *  Node Class
      */
-    static class Node{
-        private int value;
+    static class Node<T>{
+        private T value;
         private Node next = null;
 
-        Node(int value){
+        Node(T value){
             this.value = value;
         }
 
@@ -45,11 +46,11 @@ public class LinkListStackExample {
         }
 
         @SuppressWarnings("unused")
-        public void setValue(int value){
+        public void setValue(T value){
             this.value = value;
         }
 
-        int getValue(){
+        T getValue(){
             return this.value;
         }
 
@@ -70,7 +71,7 @@ public class LinkListStackExample {
     /**
      *  LinkList Class
      */
-    static class LinkListCustom{
+    static class LinkListCustom<T>{
         private Node first = null; // Reference to the top of the stack
         private Node last = null; // Reference to the bottom of the stack
         private int size = 0; // Current size of the stack
@@ -79,7 +80,7 @@ public class LinkListStackExample {
         /**
          * @param value Integer to assign to Node's content
          */
-        void add(int value){
+        void add(T value){
             if(first == null){
                 last = new Node(value); // Set bottom of stack to first node adding to linkList
             }
@@ -136,17 +137,17 @@ public class LinkListStackExample {
     /**
      *  LinkList Stack class
      */
-    static class LinkListStack{
+    static class LinkListStack<T>{
 
         private LinkListCustom listCustom = new LinkListCustom();
 
         @SuppressWarnings("unused")
-        public void push(int value){
+        public void push(T value){
             getListCustom().add(value);
         }
 
-        void push(int... value){
-            for (int aValue : value) {
+        void push(T... value){
+            for (T aValue : value) {
                 getListCustom().add(aValue);
             }
         }
