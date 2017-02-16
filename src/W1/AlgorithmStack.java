@@ -1,15 +1,9 @@
 package W1;
 
-import java.util.Arrays;
-
 /**
  * Created by Stephen A. on 07/02/2017.
  */
 public class AlgorithmStack {
-
-    @SuppressWarnings("unchecked")
-    public AlgorithmStack(){
-    }
 
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
@@ -48,18 +42,16 @@ public class AlgorithmStack {
         return s.pop();
     }
 
+    //TODO fix this..
     public Object showBottomOfStack(StackArrayImpl stackArray) throws Exception {
-        Object[] temp = new Object[(stackArray.size() - stackArray.remainingSpace())];
+        Object[] tempContainer = new Object[stackArray.size()];
 
-        for(int i = 0; i < stackArray.size(); i++){
+        for(int i = 0; i < stackArray.size()-1; i++){
             Object item = stackArray.pop();
-            temp[i] = item;
+            tempContainer[i] = item;
         }
 
-        stackArray.push(temp);
-
-        System.out.println("Origin: " + stackArray);
-        System.out.println("Finale: " + Arrays.toString(temp));
+        stackArray.push(tempContainer);
 
         return showTopOfStack(stackArray);
     }

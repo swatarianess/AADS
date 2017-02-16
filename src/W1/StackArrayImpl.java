@@ -98,7 +98,7 @@ public class StackArrayImpl<T> implements StackArray<T> {
     /**
      * @return Returns the size of the stack
      */
-    public int size(){ return this.stackSize;}
+    public int size(){ return stackSize;}
 
     /**
      * Increases the size of the stack by the given value
@@ -114,7 +114,7 @@ public class StackArrayImpl<T> implements StackArray<T> {
     private void decrementStackSize(){
         stackSize = (size() - 1);
         Object[] largerArray = new Object[stackSize];
-        System.arraycopy(stackArray, 0, largerArray, 0, size());
+        System.arraycopy(stackArray, 0, largerArray, 0, stackSize);
         stackArray = (T[]) largerArray;
     }
 
@@ -130,7 +130,7 @@ public class StackArrayImpl<T> implements StackArray<T> {
         } else {
             stackSize = (size() - decrementAmount);
             Object[] largerArray = new Object[stackSize];
-            System.arraycopy(stackArray, 0, largerArray, 0, size());
+            System.arraycopy(stackArray, 0, largerArray, 0, stackSize);
             stackArray = (T[]) largerArray;
         }
     }

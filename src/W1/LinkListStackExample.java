@@ -8,7 +8,7 @@ package W1;
 public class LinkListStackExample {
 
     public static void main(String[] args){
-        LinkListStack lls = new LinkListStack();
+        LinkListStack<Integer> lls = new LinkListStack<>();
         lls.push(10,20,30,40,50);
         System.out.println("Size: " + lls.getListCustom().getSize());
         lls.displayStack();
@@ -73,7 +73,7 @@ public class LinkListStackExample {
      */
     static class LinkListCustom<T>{
         private Node first = null; // Reference to the top of the stack
-        private Node last = null; // Reference to the bottom of the stack
+        private Node<T> last = null; // Reference to the bottom of the stack
         private int size = 0; // Current size of the stack
 
 
@@ -82,7 +82,7 @@ public class LinkListStackExample {
          */
         void add(T value){
             if(first == null){
-                last = new Node(value); // Set bottom of stack to first node adding to linkList
+                last = new Node<>(value); // Set bottom of stack to first node adding to linkList
             }
 
             Node temp = new Node(value);
@@ -125,7 +125,7 @@ public class LinkListStackExample {
         public Node getFirst(){return first;}
 
         @SuppressWarnings("unused")
-        public Node getLast(){return last;}
+        public Node<T> getLast(){return last;}
 
         @SuppressWarnings("unused")
         public int getSize(){return size;}
@@ -139,7 +139,7 @@ public class LinkListStackExample {
      */
     static class LinkListStack<T>{
 
-        private LinkListCustom listCustom = new LinkListCustom();
+        private LinkListCustom<T> listCustom = new LinkListCustom<>();
 
         @SuppressWarnings("unused")
         public void push(T value){
@@ -165,12 +165,12 @@ public class LinkListStackExample {
             getListCustom().displayList();
         }
 
-        LinkListCustom getListCustom() {
+        LinkListCustom<T> getListCustom() {
             return listCustom;
         }
 
         @SuppressWarnings("unused")
-        public void setListCustom(LinkListCustom listCustom) {
+        public void setListCustom(LinkListCustom<T> listCustom) {
             this.listCustom = listCustom;
         }
     }
