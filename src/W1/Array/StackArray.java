@@ -1,4 +1,4 @@
-package W1;
+package W1.Array;
 
 /**
  * Created by Stephen Adu on 09/02/2017.

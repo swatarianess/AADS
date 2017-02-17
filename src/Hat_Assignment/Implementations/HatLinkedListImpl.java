@@ -1,16 +1,14 @@
-package Hat_Assignment;
+package Hat_Assignment.Implementations;
 
-import Hat_Assignment.util.Timer;
-
-import java.util.ArrayList;
+import Hat_Assignment.Hat;
+import java.util.LinkedList;
 
 /**
  * Created by Stephen A. on 16/02/2017.
  */
-public class HatIml<T> implements Hat<T> {
+public class HatLinkedListImpl<T> implements Hat<T> {
 
-    private ArrayList<T> storage = new ArrayList<>();
-    private Timer timer = new Timer();
+    private LinkedList<T> storage = new LinkedList<>();
 
     @Override
     public boolean isEmpty() {
@@ -24,16 +22,13 @@ public class HatIml<T> implements Hat<T> {
 
     @Override
     public void give(T item) {
-        timer.start();
         storage.add(item);
-        System.out.println(timer.getElaspedTime());
     }
 
     @Override
     public T take() {
         int randomIndex = (int) (Math.random()*storage.size());
         return storage.remove(randomIndex);
-        //TODO Checkout return. Complexity should
     }
 
     @Override

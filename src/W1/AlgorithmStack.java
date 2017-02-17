@@ -1,20 +1,30 @@
 package W1;
 
+import W1.Array.StackArrayImpl;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Created by Stephen A. on 07/02/2017.
  */
 public class AlgorithmStack {
 
     @SuppressWarnings("unchecked")
+    public AlgorithmStack(){
+    }
+
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
         //Initialize AlgorithmStack
         AlgorithmStack algorithmStack = new AlgorithmStack();
-        StackArrayImpl<Integer> integerStackArray = new StackArrayImpl<>(10);
-        StackArrayImpl<String> stringStackArray = new StackArrayImpl<>(10);
+        StackArrayImpl integerStackArray = new StackArrayImpl<>(10);
+        StackArrayImpl stringStackArray = new StackArrayImpl<>(10);
 
         //Push elements to stack arrays
         integerStackArray.push(10,20,30,40,50);
         stringStackArray.push("hi","world","how","goes","it");
+        //
 
         System.out.println();
 
@@ -23,13 +33,16 @@ public class AlgorithmStack {
 
         System.out.println();
 
-        System.out.println("Integer stack [" + integerStackArray.size() + "] contents: \n" + integerStackArray);
-        System.out.println("Bottom of Integer stack: \n" + algorithmStack.showBottomOfStack(integerStackArray));
+        System.out.println(String.format("Integer Stack[%d]: %s",integerStackArray.size(),integerStackArray));
+        System.out.println("Bottom of Integer stack: " + algorithmStack.showBottomOfStack(integerStackArray));
+        System.out.println(String.format("Integer Stack[%d]: %s",integerStackArray.size(),integerStackArray));
 
         System.out.println();
 
-        System.out.println("String stack [" + stringStackArray.size() + "]  contents: \n" + stringStackArray);
-        System.out.println("Bottom of string stack: \n" + algorithmStack.showBottomOfStack(stringStackArray));
+        System.out.println(String.format("String Stack[%d]: %s",stringStackArray.size(),stringStackArray));
+        System.out.println("Bottom of string stack: " + algorithmStack.showBottomOfStack(stringStackArray));
+        System.out.println(String.format("String Stack[%d]: %s",stringStackArray.size(),stringStackArray));
+
     }
 
     public Object showTopOfStack(StackArrayImpl stackArray) throws Exception {
@@ -42,18 +55,24 @@ public class AlgorithmStack {
         return s.pop();
     }
 
-    //TODO fix this..
     public Object showBottomOfStack(StackArrayImpl stackArray) throws Exception {
-        Object[] tempContainer = new Object[stackArray.size()];
+        System.out.println(String.format("Original Array[%d]: %s",stackArray.size(),stackArray));
+        reverseArray(stackArray);
+        return showTopOfStack(stackArray);
+    }
 
-        for(int i = 0; i < stackArray.size()-1; i++){
+    private StackArrayImpl reverseArray(StackArrayImpl stackArray) throws Exception{
+        Object[] objects = new Object[(stackArray.size())];
+
+        for(int i = 0; i < stackArray.size(); i++){
             Object item = stackArray.pop();
-            tempContainer[i] = item;
+            objects[i] = item;
         }
 
-        stackArray.push(tempContainer);
+        Collections.reverse(Arrays.asList(objects));
+        stackArray.push(objects);
 
-        return showTopOfStack(stackArray);
+        return stackArray;
     }
 
 
@@ -65,7 +84,7 @@ public class AlgorithmStack {
             temp[i] = obj;
         }
 
-       return temp[index];
+        return temp[index];
     }
 
 

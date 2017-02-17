@@ -1,4 +1,4 @@
-package W1;
+package W1.Array;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;
@@ -13,15 +13,17 @@ import java.io.PrintStream;
 public class StackArrayImpl<T> implements StackArray<T> {
 
     private int top;
+    private int count;
     private int stackSize;
     private T[] stackArray;
     private final static PrintStream p = System.out;
 
     @SuppressWarnings("unchecked")
     public StackArrayImpl(int arraySize){
-        this.stackSize = arraySize;
+        this.stackSize = arraySize+1;
         this.stackArray = (T[]) new Object[arraySize];
         this.top = -1;
+        this.count = 0;
     }
 
     /**
@@ -35,10 +37,12 @@ public class StackArrayImpl<T> implements StackArray<T> {
             p.println("Stack is full, increasing stack size.");
             incrementStackSize();
             push(value);
+            count++;
         }else{
             //Move pointer to next position and add value
             top++;
             stackArray[top] = (T) value;
+            count++;
         }
     }
 
@@ -59,12 +63,14 @@ public class StackArrayImpl<T> implements StackArray<T> {
                 for (Object aValue : value) {
                     top++;
                     stackArray[top] = (T) aValue;
+                    count++;
                 }
             }
         } else {
             //throw new StackOverflowError("Stack overflow.");
             incrementStackSize();
             push(value);
+            count++;
         }
     }
 
@@ -75,9 +81,10 @@ public class StackArrayImpl<T> implements StackArray<T> {
     public T pop() throws Exception {
         Object valueOfTop = stackArray[top];
         if(!isEmpty()) {
-            stackArray[top] = null;
+//            stackArray[top] = null;
             decrementStackSize();
             top--;
+            count--;
             return (T) valueOfTop;
         } else{
             throw new EmptyStackException();
@@ -100,11 +107,13 @@ public class StackArrayImpl<T> implements StackArray<T> {
      */
     public int size(){ return stackSize;}
 
+    public int getCount(){return count;}
+
     /**
      * Increases the size of the stack by the given value
      */
     private void incrementStackSize() {
-        incrementStackSize(size());
+        incrementStackSize(stackSize);
     }
 
     /**
@@ -112,10 +121,11 @@ public class StackArrayImpl<T> implements StackArray<T> {
      */
     @SuppressWarnings("unchecked")
     private void decrementStackSize(){
-        stackSize = (size() - 1);
-        Object[] largerArray = new Object[stackSize];
-        System.arraycopy(stackArray, 0, largerArray, 0, stackSize);
-        stackArray = (T[]) largerArray;
+        int newSize = stackSize - 1;
+        Object[] smallerArray = new Object[newSize];
+        System.arraycopy(stackArray, 0, smallerArray, 0, newSize);
+        stackArray = (T[]) smallerArray;
+        stackSize = newSize;
     }
 
     /**
@@ -125,10 +135,10 @@ public class StackArrayImpl<T> implements StackArray<T> {
      */
     @SuppressWarnings("unchecked")
     private void decrementStackSize(int decrementAmount){
-        if ((decrementAmount >= size())) {
+        if ((decrementAmount >= stackSize)) {
             throw new StackOverflowError("Cannot have negative size array.");
         } else {
-            stackSize = (size() - decrementAmount);
+            stackSize -= decrementAmount;
             Object[] largerArray = new Object[stackSize];
             System.arraycopy(stackArray, 0, largerArray, 0, stackSize);
             stackArray = (T[]) largerArray;
@@ -142,7 +152,7 @@ public class StackArrayImpl<T> implements StackArray<T> {
      */
     @SuppressWarnings("unchecked")
     private void incrementStackSize(int incrementAmount){
-        stackSize = (size()+incrementAmount);
+        stackSize += incrementAmount;
         Object[] largerArray = new Object[stackSize];
         System.arraycopy(stackArray,0,largerArray,0,stackArray.length);
         stackArray = (T[]) largerArray;
