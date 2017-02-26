@@ -42,7 +42,7 @@ public class HatHashMapArrayListImpl<T> implements Hat<T> {
         //Else put element at the end of array[]
         int s = array.size();
         array.add(item);
-        hash.put(item,s); //TODO: Find out what this is for?
+        hash.put(item,s);
 
     }
 
@@ -50,7 +50,6 @@ public class HatHashMapArrayListImpl<T> implements Hat<T> {
     public T take() {
         int index = getRandom(); // Get random index
         T itemToReturn = array.get(index); //Gets random element from array
-
         array.remove(itemToReturn);
 
         return itemToReturn;
