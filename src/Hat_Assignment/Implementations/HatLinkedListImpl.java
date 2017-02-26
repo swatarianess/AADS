@@ -1,6 +1,8 @@
 package Hat_Assignment.Implementations;
 
 import Hat_Assignment.Hat;
+
+import java.security.SecureRandom;
 import java.util.LinkedList;
 
 /**
@@ -27,7 +29,8 @@ public class HatLinkedListImpl<T> implements Hat<T> {
 
     @Override
     public T take() {
-        int randomIndex = (int) (Math.random()*storage.size());
+        SecureRandom r = new SecureRandom();
+        int randomIndex = r.nextInt(storage.size());
         return storage.remove(randomIndex);
     }
 

@@ -8,15 +8,15 @@ public class Timer {
     private long startTime;
 
     public Timer(){
-        startTime = System.nanoTime();
+        startTime = System.currentTimeMillis();
     }
 
     public void start(){
-        startTime = System.nanoTime();
+        startTime = System.currentTimeMillis();
     }
 
-    public long getElaspedTime(){
-        return (System.currentTimeMillis() - startTime);
+    public double getElapsedTime(){
+        return (System.currentTimeMillis() - startTime) / 1000.0;
     }
 
 

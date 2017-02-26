@@ -2,88 +2,120 @@ package Hat_Assignment;
 
 import Hat_Assignment.Implementations.HatHashMapArrayListImpl;
 import Hat_Assignment.Implementations.HatLinkedListImpl;
+import Hat_Assignment.Implementations.HatTreeMapImpl;
 import Hat_Assignment.util.Timer;
 
 import java.security.SecureRandom;
 
+
 /**
- * Created by Stephen A. on 16/02/2017.
+ * Created by Stephen A.
  */
 public class ComplexityTest {
 
-    ComplexityTest(){
-
-    }
 
     public static void main(String[] args){
         ComplexityTest complexityTest = new ComplexityTest();
-
+        int maxSize = 3500000; //2,097,152
         System.out.println("\nTest: Hat with LinkedList implementation");
 
         //Test Hat with LinkedList Implementation
-        for(int i = 1; i <= 9000000; i*=2)
+        for(int i = 1; i <= maxSize; i*=2) {
             complexityTest.testHatLinkedlist(i);
+        }
 
+        System.out.println("======================================================");
 
+        System.out.println("\nTest: Hat with HashMap-ArrayList combination implementation");
 
-//        System.out.println("\nTest: Hat with HashMap-ArrayList combination implementation");
-//
-//        //Test hat with HashMap_ArrayList implementation
-//        complexityTest.testHatHashMapArrayList();
+        //Test hat with HashMap_ArrayList implementation
+        for(int i=1; i <= maxSize; i*=2) {
+            complexityTest.testHatHashMapArrayList(i);
+        }
 
+        System.out.println("======================================================");
+
+        System.out.println("\nTest: Hat with Tree-map combination implementation");
+
+        //Test hat with Tree_Map implementation
+        for (int i = 1; i < maxSize; i*=2) {
+            complexityTest.testHatTreeMap(i);
+        }
+
+        
     }
 
-    private void testHatLinkedlist(int iterations){
-        HatLinkedListImpl<Integer> hatA = new HatLinkedListImpl<>();
-        HatLinkedListImpl<String> hatB = new HatLinkedListImpl<>();
-        HatLinkedListImpl<Double> hatC = new HatLinkedListImpl<>();
+    private void testHatLinkedlist(int setSize){
+        HatLinkedListImpl<Integer> hatLinkedList = new HatLinkedListImpl<>();
         SecureRandom r = new SecureRandom();
         Timer t = new Timer();
 
-        System.out.println("Method= Give()");
+        System.out.println("Give() & Take()");
 
         //Populate Collection with Integers
         t.start();
-        for(int i = 0; i < iterations; i++)
-            hatA.give(r.nextInt());
-        System.out.println(String.format("Collection Type:Integer | Time for i[%s]: %s ", iterations, t.getElaspedTime()));
+        for(int i = 0; i < setSize; i++)
+            hatLinkedList.give(r.nextInt());
+        formatTimeTaken(setSize,t.getElapsedTime());
 
-        System.out.println("Method= Take()");
 
         //Take element from collection
         t.start();
-        hatA.take();
-        System.out.println(String.format("Collection Type:Integer Method= Take(), Time for i[%s]: %s ", iterations, t.getElaspedTime()));
+        formatTimeTaken(setSize,t.getElapsedTime());
 
         System.out.println();
 
     }
 
-    private void testHatHashMapArrayList(){
+    private void testHatHashMapArrayList(int setSize){
+        HatHashMapArrayListImpl<Integer> hatHashMapArrayList = new HatHashMapArrayListImpl<>();
+        SecureRandom r = new SecureRandom();
+        Timer t = new Timer();
 
-        HatHashMapArrayListImpl<String> hatA = new HatHashMapArrayListImpl<>();
-        HatHashMapArrayListImpl<Integer> hatB = new HatHashMapArrayListImpl<>();
-        HatHashMapArrayListImpl<Double> hatC = new HatHashMapArrayListImpl<>();
+        System.out.println("Give() & Take()");
+        //Execute give method on collection
+        t.start();
 
-        hatA.give("Hello");
-        hatA.give("world");
-        hatA.give("1");
-        hatA.give("2");
-        hatA.give("3");
+        for (int i = 0; i < setSize; i++)
+        hatHashMapArrayList.give(r.nextInt());
 
-        hatB.give(1);
-        hatB.give(2);
-        hatB.give(3);
-        hatB.give(4);
-        hatB.give(5);
+        formatTimeTaken(setSize,t.getElapsedTime());
 
-        hatC.give(1.00);
-        hatC.give(1.50);
-        hatC.give(2.00);
-        hatC.give(2.50);
-        hatC.give(3.00);
+        //Execute take from collection
+        t.start();
+        hatHashMapArrayList.take();
+        formatTimeTaken(setSize,t.getElapsedTime());
 
+        System.out.println();
 
+    }
+
+    private void testHatTreeMap(int setSize){
+        HatTreeMapImpl<Integer> hatTreeMap = new HatTreeMapImpl<>();
+        SecureRandom r = new SecureRandom();
+        Timer t = new Timer();
+
+        System.out.println("Give() & Take()");
+        t.start();
+        for (int i = 0; i < setSize; i++) {
+            hatTreeMap.give(r.nextInt());
+        }
+        formatTimeTaken(setSize,t.getElapsedTime());
+
+        //Execute Take
+        t.start();
+        hatTreeMap.take();
+        formatTimeTaken(setSize,t.getElapsedTime());
+
+        System.out.println();
+
+    }
+
+    private void formatTimeTaken(int setSize, double timeTaken){
+        System.out.println(String.format("%s : %s", setSize, timeTaken));
+    }
+
+    private void addToJsonArray(String s, int value){
 
     }
 

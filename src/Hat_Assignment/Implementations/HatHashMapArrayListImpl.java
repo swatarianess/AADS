@@ -3,6 +3,7 @@ package Hat_Assignment.Implementations;
 import Hat_Assignment.Hat;
 import Hat_Assignment.util.Timer;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -36,8 +37,6 @@ public class HatHashMapArrayListImpl<T> implements Hat<T> {
      */
     @Override
     public void give(T item) {
-        Timer t = new Timer();
-
         //No duplicates
         if (hash.get(item) != null)
         return;
@@ -45,9 +44,7 @@ public class HatHashMapArrayListImpl<T> implements Hat<T> {
         //Else put element at the end of array[]
         int s = array.size();
         array.add(item);
-
-        hash.put(item,s);
-        System.out.println(t.getElaspedTime());
+        hash.put(item,s); //TODO: Find out what this is for?
 
     }
 
@@ -66,7 +63,7 @@ public class HatHashMapArrayListImpl<T> implements Hat<T> {
      * @return Returns a random index from the array
      */
     private int getRandom(){
-        Random r = new Random();
+        SecureRandom r = new SecureRandom();
         return r.nextInt(array.size());
     }
 
