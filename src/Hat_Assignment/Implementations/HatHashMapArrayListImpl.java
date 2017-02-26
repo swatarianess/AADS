@@ -1,15 +1,13 @@
 package Hat_Assignment.Implementations;
 
-import Hat_Assignment.Hat;
-import Hat_Assignment.util.Timer;
+import Hat_Assignment.interfaces.Hat;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 /**
- * Created by Stephen Adu on 17/02/2017.
+ * Created by Stephen A.
  */
 public class HatHashMapArrayListImpl<T> implements Hat<T> {
 

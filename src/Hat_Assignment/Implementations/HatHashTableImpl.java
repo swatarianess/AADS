@@ -1,23 +1,27 @@
 package Hat_Assignment.Implementations;
 
-import Hat_Assignment.Hat;
+import Hat_Assignment.interfaces.Hat;
 
+import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
- * Created by Stephen Adu on 26/02/2017.
+ * Created by Stephen A.
  */
 public class HatHashTableImpl<T> implements Hat<T> {
 
-    private Hashtable<Integer,T> integerTHashtable = new Hashtable<>();
-    private int counter = 0;
+    private Hashtable<Integer,T> integerHashtable = new Hashtable<>();
+    private List<Integer> keys = new ArrayList<>(integerHashtable.keySet());
+    private int counter = -1;
 
     /**
      * @return Returns <b>true</b> if empty, <b>false</b> if > 0 elements
      */
     @Override
     public boolean isEmpty() {
-        return integerTHashtable.isEmpty();
+        return integerHashtable.isEmpty();
     }
 
     /**
@@ -25,7 +29,7 @@ public class HatHashTableImpl<T> implements Hat<T> {
      */
     @Override
     public int size() {
-        return integerTHashtable.size();
+        return integerHashtable.size();
     }
 
     /**
@@ -34,8 +38,9 @@ public class HatHashTableImpl<T> implements Hat<T> {
     @Override
     public void give(T item) {
         counter++;
-        integerTHashtable.keySet().add(counter);
-        integerTHashtable.put(counter,item);
+        integerHashtable.put(counter,item);
+        keys.add(counter);
+
     }
 
     /**
@@ -43,6 +48,9 @@ public class HatHashTableImpl<T> implements Hat<T> {
      */
     @Override
     public T take() {
-        return null;
+        SecureRandom r = new SecureRandom();
+        int randomIndex = r.nextInt(integerHashtable.keySet().size());
+        return integerHashtable.remove(randomIndex);
+
     }
 }

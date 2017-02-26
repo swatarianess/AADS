@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Created by Stephen A. on 07/02/2017.
+ * Created by Stephen A.
  */
 public class AlgorithmStack {
 

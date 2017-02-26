@@ -1,12 +1,12 @@
 package Hat_Assignment.Implementations;
 
-import Hat_Assignment.Hat;
+import Hat_Assignment.interfaces.Hat;
 
 import java.security.SecureRandom;
 import java.util.LinkedList;
 
 /**
- * Created by Stephen A. on 16/02/2017.
+ * Created by Stephen A.
  */
 public class HatLinkedListImpl<T> implements Hat<T> {
 

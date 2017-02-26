@@ -1,6 +1,7 @@
 package Hat_Assignment;
 
 import Hat_Assignment.Implementations.HatHashMapArrayListImpl;
+import Hat_Assignment.Implementations.HatHashTableImpl;
 import Hat_Assignment.Implementations.HatLinkedListImpl;
 import Hat_Assignment.Implementations.HatTreeMapImpl;
 import Hat_Assignment.util.Timer;
@@ -41,6 +42,18 @@ public class ComplexityTest {
         for (int i = 1; i < maxSize; i*=2) {
             complexityTest.testHatTreeMap(i);
         }
+
+
+        System.out.println("======================================================");
+
+        System.out.println("\nTest: Hat with HashTable combination implementation");
+
+        //Test hat with HashTable implementation
+        for (int i = 1; i < maxSize; i*=2) {
+            complexityTest.testHashTable(i);
+        }
+
+        System.out.println("======================================================");
 
         
     }
@@ -111,13 +124,31 @@ public class ComplexityTest {
 
     }
 
+    private void testHashTable(int setSize){
+        HatHashTableImpl<Integer> hatTreeMap = new HatHashTableImpl<>();
+        SecureRandom r = new SecureRandom();
+        Timer t = new Timer();
+
+        System.out.println("Give() & Take()");
+        t.start();
+        for (int i = 0; i < setSize; i++) {
+            hatTreeMap.give(r.nextInt());
+        }
+        formatTimeTaken(setSize,t.getElapsedTime());
+
+        //Execute Take
+        t.start();
+        hatTreeMap.take();
+        formatTimeTaken(setSize,t.getElapsedTime());
+
+        System.out.println();
+
+    }
+
     private void formatTimeTaken(int setSize, double timeTaken){
         System.out.println(String.format("%s : %s", setSize, timeTaken));
     }
 
-    private void addToJsonArray(String s, int value){
-
-    }
 
 
 }

@@ -1,7 +1,7 @@
-package Hat_Assignment;
+package Hat_Assignment.interfaces;
 
 /**
- * Created by Stephen A. on 16/02/2017.
+ * Created by Stephen A.
  */
 public interface Hat<T> {
 

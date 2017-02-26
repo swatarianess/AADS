@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * Created by Stephen A. on 14/02/2017.
+ * Created by Stephen A.
  */
 public class Things {
 

@@ -1,15 +1,14 @@
 package Hat_Assignment.Implementations;
 
-import Hat_Assignment.Hat;
+import Hat_Assignment.interfaces.Hat;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.TreeMap;
 
 /**
- * Created by Stephen Adu on 17/02/2017.
+ * Created by Stephen A.
  */
 public class HatTreeMapImpl<T> implements Hat<T> {
 

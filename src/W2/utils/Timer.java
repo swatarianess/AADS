@@ -1,24 +1,22 @@
 package W2.utils;
 
-import static java.lang.System.currentTimeMillis;
-
 /**
- * Created by Stephen A. on 07/02/2017.
+ * Created by Stephen A.
  */
 public class Timer {
 
     private long startTime;
 
     public Timer(){
-        startTime = currentTimeMillis();
+        startTime = System.currentTimeMillis();
     }
 
     public void start(){
-        startTime = currentTimeMillis();
+        startTime = System.currentTimeMillis();
     }
 
     public long getElaspedTime(){
-        return (currentTimeMillis() - startTime);
+        return (System.currentTimeMillis() - startTime);
     }
 
 

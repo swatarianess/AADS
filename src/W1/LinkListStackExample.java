@@ -3,7 +3,7 @@ package W1;
 /**
  *  Stack implementation on a custom Linklist
  *
- * Created by Stephen Adu on 31/01/2017.
+ * Created by Stephen A.
  */
 public class LinkListStackExample {
 
