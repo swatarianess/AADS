@@ -5,18 +5,18 @@ package Hat_Assignment.util;
  */
 public class Timer {
 
-    private long startTime;
+    private double startTime;
 
     public Timer(){
-        startTime = System.currentTimeMillis();
+        startTime = System.nanoTime();
     }
 
     public void start(){
-        startTime = System.currentTimeMillis();
+        startTime = System.nanoTime();
     }
 
     public double getElapsedTime(){
-        return (System.currentTimeMillis() - startTime) / 1000.0;
+        return (System.nanoTime() - startTime);
     }
 
 

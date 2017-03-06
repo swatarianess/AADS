@@ -3,25 +3,21 @@ package Hat_Assignment.Implementations;
 import Hat_Assignment.interfaces.Hat;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeMap;
 
 /**
- * Created by Stephen A.
+ * Created by Stephen A. & Semida A.
  */
 public class HatTreeMapImpl<T> implements Hat<T> {
 
     private TreeMap<Integer,T> treeMap = new TreeMap<>();
-    private List<Integer> keys = new ArrayList<>(treeMap.keySet());
-    private int index = -1;
 
     /**
      * @return Returns <b>true</b> if empty, <b>false</b> if > 0 elements
      */
     @Override
     public boolean isEmpty() {
-        return keys.isEmpty() && treeMap.isEmpty();
+        return treeMap.size() == 0;
     }
 
     /**
@@ -37,18 +33,18 @@ public class HatTreeMapImpl<T> implements Hat<T> {
      */
     @Override
     public void give(T item) {
-        index++;
-        treeMap.put(index,item);
-        keys.add(index);
+        treeMap.put(treeMap.size(),item);
     }
 
     /**
+     *  Removes random Item from the collection. Uses counter to keep count of Size
+     *
      * @return Returns a removes and returns a random element from the collection
      */
     @Override
     public T take() {
         SecureRandom r = new SecureRandom();
-        int randomIndex = keys.get(r.nextInt(keys.size()));
-        return treeMap.remove(randomIndex);
+        Object itemToRemove = treeMap.get(r.nextInt(size()));
+        return treeMap.remove(itemToRemove);
     }
 }
