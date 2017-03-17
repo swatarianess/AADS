@@ -3,9 +3,7 @@ package Hat_Assignment.Implementations;
 import Hat_Assignment.interfaces.Hat;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by Stephen Adu
@@ -13,7 +11,7 @@ import java.util.List;
 public class HatHashMapImpl<T> implements Hat<T> {
 
     private HashMap<Integer,T> collection = new HashMap<>();
-    private List<Integer> keyList = new ArrayList<>();
+//    private List<Integer> keyList = new ArrayList<>();
     private SecureRandom random = new SecureRandom();
 
     private int counter = 0;
