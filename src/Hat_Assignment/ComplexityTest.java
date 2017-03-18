@@ -89,41 +89,6 @@ public class ComplexityTest {
         System.out.println();
     }
 
-    private void testHatTreeMap(int setSize) {
-        HatTreeMapImpl<Integer> hatTreeMap = new HatTreeMapImpl<>();
-        SecureRandom r = new SecureRandom();
-        Timer t = new Timer();
-        double elapsedTime;
-
-        //Execute Give()
-        t.start();
-        for (int i = 0; i < setSize; i++) {
-            hatTreeMap.give(r.nextInt(10));
-        }
-        elapsedTime = t.getElapsedTime();
-        formatTimeTaken("give()", hatTreeMap.size(), elapsedTime);
-
-        //Execute Take()
-        t.start();
-        hatTreeMap.take();
-        elapsedTime = t.getElapsedTime();
-        formatTimeTaken("take()", hatTreeMap.size(), elapsedTime);
-
-        //Execute isEmpty()
-        t.start();
-        hatTreeMap.isEmpty();
-        elapsedTime = t.getElapsedTime();
-        formatTimeTaken("isEmpty()", hatTreeMap.size(), elapsedTime);
-
-        //Execute size()
-        t.start();
-        hatTreeMap.size();
-        elapsedTime = t.getElapsedTime();
-        formatTimeTaken("size()", hatTreeMap.size(), elapsedTime);
-
-        System.out.println();
-
-    }
 
     private void testHatArray(int setSize) {
         HatArrayImpl<Integer> hArray = new HatArrayImpl<>();
@@ -273,4 +238,40 @@ public class ComplexityTest {
 
     }
 
+    @SuppressWarnings("unused")
+    private void testHatTreeMap(int setSize) {
+        HatTreeMapImpl<Integer> hatTreeMap = new HatTreeMapImpl<>();
+        SecureRandom r = new SecureRandom();
+        Timer t = new Timer();
+        double elapsedTime;
+
+        //Execute Give()
+        t.start();
+        for (int i = 0; i < setSize; i++) {
+            hatTreeMap.give(r.nextInt(10));
+        }
+        elapsedTime = t.getElapsedTime();
+        formatTimeTaken("give()", hatTreeMap.size(), elapsedTime);
+
+        //Execute Take()
+        t.start();
+        hatTreeMap.take();
+        elapsedTime = t.getElapsedTime();
+        formatTimeTaken("take()", hatTreeMap.size(), elapsedTime);
+
+        //Execute isEmpty()
+        t.start();
+        hatTreeMap.isEmpty();
+        elapsedTime = t.getElapsedTime();
+        formatTimeTaken("isEmpty()", hatTreeMap.size(), elapsedTime);
+
+        //Execute size()
+        t.start();
+        hatTreeMap.size();
+        elapsedTime = t.getElapsedTime();
+        formatTimeTaken("size()", hatTreeMap.size(), elapsedTime);
+
+        System.out.println();
+
+    }
 }

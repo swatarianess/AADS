@@ -6,7 +6,7 @@ package Hat_Assignment.interfaces;
 public interface Hat<T> {
 
     /**
-     * @return Returns <b>true</b> if empty, <b>false</b> if > 0 elements
+     * @return Returns <b>true</b> if empty, <b>false</b> if more than 0 elements
      */
     boolean isEmpty();
 
