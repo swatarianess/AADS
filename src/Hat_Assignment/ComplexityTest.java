@@ -43,6 +43,16 @@ public class ComplexityTest {
 
         System.out.println("======================================================");
 
+        System.out.println("\nTest: Hat with TreeMap implementation");
+        System.out.println("\nMethodType | Datastructure Size : Time(Nano-seconds)");
+
+        //Test hat with Array implementation
+        for (int i = 1; i < maxSize; i *= 2) {
+            complexityTest.testHatTreeMap(i);
+        }
+
+        System.out.println("======================================================");
+
 
     }
 
@@ -244,10 +254,11 @@ public class ComplexityTest {
         double elapsedTime;
 
         //Execute Give()
-        t.start();
-        for (int i = 0; i < setSize; i++) {
+        for (int i = 0; i < setSize-1; i++) {
             hatTreeMap.give(r.nextInt(10));
         }
+        t.start();
+        hatTreeMap.give(r.nextInt(10));
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("give()", hatTreeMap.size(), elapsedTime);
 

@@ -44,7 +44,6 @@ public class HatTreeMapImpl<T> implements Hat<T> {
     @Override
     public T take() {
         SecureRandom r = new SecureRandom();
-        Object itemToRemove = treeMap.get(r.nextInt(size()));
-        return treeMap.remove(itemToRemove);
+        return treeMap.remove(r.nextInt(size()));
     }
 }
