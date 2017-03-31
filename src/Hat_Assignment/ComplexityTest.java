@@ -8,7 +8,7 @@ import Hat_Assignment.Implementations.HatLinkedListImpl;
 import Hat_Assignment.Implementations.HatTreeMapImpl;
 import Hat_Assignment.util.Timer;
 
-import java.security.SecureRandom;
+import java.util.Random;
 
 /**
  * Created by Stephen A.
@@ -40,67 +40,63 @@ public class ComplexityTest {
             complexityTest.testHatArray(i);
         }
 
+
         System.out.println("======================================================");
 
-        System.out.println("\nTest: Hat with HashMap implementation");
-        System.out.println("\nMethodType | Datastructure Size : Time(Nano-seconds)");
-
-        //Test hat with Array implementation
-        for (int i = 1; i < maxSize; i *= 2) {
-            complexityTest.testHatHashMap(i);
-        }
 
     }
 
-    private void testHatHashMap(int setSize) {
-        HatHashMapImpl<Integer> hatHashMap = new HatHashMapImpl<>();
-        SecureRandom random = new SecureRandom();
+
+    private void testHatHashMapArrayList(int setSize) {
+        HatHashMapArrayListImpl<Integer> hatHMAL = new HatHashMapArrayListImpl<>();
+        Random r = new Random();
         Timer t = new Timer();
         double elapsedTime;
 
-        //Execute Give()
-        for (int i = 0; i < setSize; i++) {
-            hatHashMap.give(random.nextInt(10));
-            if (i == random.nextInt(setSize)) {
-                t.start();
-            }
-        }
+        //Execute give()
+        for (int i = 0; i < setSize-1; i++)
+            hatHMAL.give(r.nextInt());
+
+        t.start();
+        hatHMAL.give(r.nextInt());
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("give()", setSize, elapsedTime);
 
-        //Execute Take()
+        //Execute take()
         t.start();
-        hatHashMap.take();
+        hatHMAL.take();
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("take()", setSize, elapsedTime);
 
         //Execute isEmpty()
         t.start();
-        hatHashMap.isEmpty();
+        hatHMAL.isEmpty();
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("isEmpty()", setSize, elapsedTime);
 
         //Execute size()
         t.start();
-        hatHashMap.size();
+        hatHMAL.size();
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("size()", setSize, elapsedTime);
 
         System.out.println();
-    }
 
+    }
 
     private void testHatArray(int setSize) {
         HatArrayImpl<Integer> hArray = new HatArrayImpl<>();
-        SecureRandom r = new SecureRandom();
+        Random r = new Random();
         Timer t = new Timer();
         double elapsedTime;
 
         //Execute Give()
-        t.start();
-        for (int i = 0; i < setSize; i++) {
+        for (int i = 0; i < setSize-1; i++) {
             hArray.give(r.nextInt(10));
         }
+
+        t.start();
+        hArray.give(r.nextInt(10));
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("give()", hArray.size(), elapsedTime);
 
@@ -132,7 +128,7 @@ public class ComplexityTest {
     @SuppressWarnings("unused")
     private void testHashTable(int setSize) {
         HatHashTableImpl<Integer> hatTreeMap = new HatHashTableImpl<>();
-        SecureRandom r = new SecureRandom();
+        Random r = new Random();
         Timer t = new Timer();
         double elapsedTime;
 
@@ -169,7 +165,7 @@ public class ComplexityTest {
     @SuppressWarnings("unused")
     private void testHatLinkedList(int setSize) {
         HatLinkedListImpl<Integer> hatLinkedList = new HatLinkedListImpl<>();
-        SecureRandom r = new SecureRandom();
+        Random r = new Random();
         Timer t = new Timer();
         double elapsedTime;
 
@@ -202,46 +198,48 @@ public class ComplexityTest {
 
     }
 
-    @SuppressWarnings("unused")
-    private void testHatHashMapArrayList(int setSize) {
-        HatHashMapArrayListImpl<Integer> hatHashMapArrayList = new HatHashMapArrayListImpl<>();
-        SecureRandom r = new SecureRandom();
+    private void testHatHashMap(int setSize) {
+        HatHashMapImpl<Integer> hatHashMap = new HatHashMapImpl<>();
+        Random random = new Random();
         Timer t = new Timer();
         double elapsedTime;
 
-        //Execute give()
-        t.start();
-        for (int i = 0; i < setSize; i++)
-            hatHashMapArrayList.give(r.nextInt());
+        //Execute Give()
+        for (int i = 0; i < setSize; i++) {
+            hatHashMap.give(random.nextInt(10));
+            if (i == random.nextInt(setSize)) {
+                t.start();
+            }
+        }
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("give()", setSize, elapsedTime);
 
-        //Execute take()
+        //Execute Take()
         t.start();
-        hatHashMapArrayList.take();
+        hatHashMap.take();
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("take()", setSize, elapsedTime);
 
         //Execute isEmpty()
         t.start();
-        hatHashMapArrayList.isEmpty();
+        hatHashMap.isEmpty();
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("isEmpty()", setSize, elapsedTime);
 
         //Execute size()
         t.start();
-        hatHashMapArrayList.size();
+        hatHashMap.size();
         elapsedTime = t.getElapsedTime();
         formatTimeTaken("size()", setSize, elapsedTime);
 
         System.out.println();
-
     }
+
 
     @SuppressWarnings("unused")
     private void testHatTreeMap(int setSize) {
         HatTreeMapImpl<Integer> hatTreeMap = new HatTreeMapImpl<>();
-        SecureRandom r = new SecureRandom();
+        Random r = new Random();
         Timer t = new Timer();
         double elapsedTime;
 

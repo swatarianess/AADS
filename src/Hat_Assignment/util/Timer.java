@@ -19,6 +19,4 @@ public class Timer {
         return (System.nanoTime() - startTime);
     }
 
-
-
 }
